@@ -1,58 +1,106 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React, { Component } from "react";
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { StyleSheet, FlatList, ActivityIndicator, Text, View  } from 'react-native';
+import NavigationBar from 'react-native-navbar';
+import { List, ListItem } from "react-native-elements";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export default class FetchExample extends React.Component {
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+  constructor(props){
+    super(props);
+    
+    this.state ={ 
+      isLoading: true,
+      refreshing: false
+    }
+
+  }
+
+  componentDidMount(){
+    this.makeRemoteRequest();
+  }
+
+  makeRemoteRequest = () => {
+    return fetch('https://swapi.co/api/people')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          refreshing: false,
+          dataSource: responseJson.results,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  };
+
+  handleRefresh = () => {
+    this.setState({
+        refreshing: true
+      }, 
+      () => {
+        this.makeRemoteRequest();
+      }
+    );
+  };
+
+  render(){
+
+    if(this.state.isLoading) {
+      return(
+        <View style={styles.centerContainer}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
+    return(
+    
+    <View style={styles.simpleContainer}>
+
+        <NavigationBar
+            title={titleConfig}
+          />
+
+        <FlatList
+            data={this.state.dataSource}
+            renderItem={({item}) => (
+            
+            <ListItem
+                roundAvatar
+                title={item.name}
+                subtitle={item.gender}
+                avatar={{ uri: item.picture }}
+            />
+          )}
+          keyExtractor={item => item.name}
+          refreshing={this.state.refreshing}
+          onRefresh={this.handleRefresh}
+        />
+
       </View>
+
     );
   }
 }
 
+
+const titleConfig = {
+  title: 'AwakensWars',
+};
+
 const styles = StyleSheet.create({
-  container: {
+  centerContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  simpleContainer: {
+    flex: 1
+  }
 });
