@@ -4,7 +4,7 @@ import { StyleSheet, FlatList, ActivityIndicator, Text, View  } from 'react-nati
 import NavigationBar from 'react-native-navbar';
 import { List, ListItem } from "react-native-elements";
 
-export default class FetchExample extends React.Component {
+export default class FilmsHomePage extends React.Component {
 
   constructor(props){
     super(props);
@@ -21,7 +21,7 @@ export default class FetchExample extends React.Component {
   }
 
   makeRemoteRequest = () => {
-    return fetch('https://swapi.co/api/people')
+    return fetch('https://swapi.co/api/films')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -71,14 +71,15 @@ export default class FetchExample extends React.Component {
             data={this.state.dataSource}
             renderItem={({item}) => (
             
-            <ListItem
+            <ListItem 
+                style={styles.simpleRow}
                 roundAvatar
-                title={item.name}
-                subtitle={item.gender}
+                title={item.title}
+                subtitle={item.opening_crawl}
                 avatar={{ uri: item.picture }}
             />
           )}
-          keyExtractor={item => item.name}
+          keyExtractor={item => item.title}
           refreshing={this.state.refreshing}
           onRefresh={this.handleRefresh}
         />
@@ -91,7 +92,7 @@ export default class FetchExample extends React.Component {
 
 
 const titleConfig = {
-  title: 'AwakensWars',
+  title: 'AwakensWars : Films',
 };
 
 const styles = StyleSheet.create({
@@ -102,5 +103,8 @@ const styles = StyleSheet.create({
   },
   simpleContainer: {
     flex: 1
+  },
+  simpleRow: {
+    height: 200
   }
 });
