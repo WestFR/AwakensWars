@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { AppRegistry, StyleSheet, ScrollView, FlatList, ActivityIndicator, Text, View, Alert } from 'react-native';
-import { List, ListItem } from "react-native-elements";
+import { List, ListHeader, ListItem } from "react-native-elements";
 
 import Moment from 'moment';
 
@@ -56,6 +56,12 @@ export default class FilmDetailsPage extends React.Component {
     );
   };
 
+  renderHeader(titleToShow) {
+     return (
+      <Text>{titleToShow}</Text>
+    )
+  }
+
   render(){
 
     const { params } = this.props.navigation.state;
@@ -73,39 +79,128 @@ export default class FilmDetailsPage extends React.Component {
 
     return(
 
+    
     <ScrollView>
+      
+      <View>
+        {this.renderHeader('General Informations')}
 
-      <ListItem 
-                style={styles.simpleRow}
-                title={`Film name : ${this.state.dataSource.title}`}
-                hideChevron={true}
-      />
+        <ListItem 
+                  style={styles.simpleRow}
+                  title={`Film name : ${this.state.dataSource.title}`}
+                  hideChevron={true}
+        />
 
-      <ListItem 
-                style={styles.simpleRow}
-                title={`Synopsis : ${this.state.dataSource.opening_crawl.substring(0,25)}...`} 
-                onPress={() => Alert.alert('Synopsis Details', `\n${this.state.dataSource.opening_crawl}`)}
-      />
+        <ListItem 
+                  style={styles.simpleRow}
+                  title={`Synopsis : ${this.state.dataSource.opening_crawl.substring(0,25)}...`} 
+                  onPress={() => Alert.alert('Synopsis Details', `\n${this.state.dataSource.opening_crawl}`)}
+        />
 
-      <ListItem 
-                style={styles.simpleRow}
-                title={`Producer : ${this.state.dataSource.producer}`} 
-                hideChevron={true}
-      />
+        <ListItem 
+                  style={styles.simpleRow}
+                  title={`Producer : ${this.state.dataSource.producer}`} 
+                  hideChevron={true}
+        />
 
-      <ListItem 
-                style={styles.simpleRow}
-                title={`Director : ${this.state.dataSource.director}`} 
-                hideChevron={true}
-      />
+        <ListItem 
+                  style={styles.simpleRow}
+                  title={`Director : ${this.state.dataSource.director}`} 
+                  hideChevron={true}
+        />
 
-      <ListItem 
+        <ListItem 
+                  style={styles.simpleRow}
+                  title={`Release date : ${Moment(this.state.dataSource.release_date).format('d MMMM YYYY')}`} 
+                  hideChevron={true}
+        />
+
+      </View>
+
+
+      <FlatList
+            data={this.state.dataSource.characters}
+            ListHeaderComponent={this.renderHeader('Characters Informations')}
+            renderItem={({item}) => (
+            
+            <ListItem 
                 style={styles.simpleRow}
-                title={`Release date : ${Moment(this.state.dataSource.release_date).format('d MMMM YYYY')}`} 
-                hideChevron={true}
-      />
+                roundAvatar
+                title={item.title}
+                subtitle={'Characters'} 
+                avatar={{ uri: item.picture }}
+            />
+          )}
+          keyExtractor={item => item.title}
+        />
+
+      <FlatList
+            data={this.state.dataSource.planets}
+            ListHeaderComponent={this.renderHeader('Planets Informations')}
+            renderItem={({item}) => (
+            
+            <ListItem 
+                style={styles.simpleRow}
+                roundAvatar
+                title={item.title}
+                subtitle={'Planets'} 
+                avatar={{ uri: item.picture }}
+            />
+          )}
+          keyExtractor={item => item.title}
+        />
+
+      <FlatList
+            data={this.state.dataSource.starships}
+            ListHeaderComponent={this.renderHeader('Starships Informations')}
+            renderItem={({item}) => (
+            
+            <ListItem 
+                style={styles.simpleRow}
+                roundAvatar
+                title={item.title}
+                subtitle={'Starships'} 
+                avatar={{ uri: item.picture }}
+            />
+          )}
+          keyExtractor={item => item.title}
+        />
+
+      <FlatList
+            data={this.state.dataSource.vehicles}
+            ListHeaderComponent={this.renderHeader('Vehicles Informations')}
+            renderItem={({item}) => (
+            
+            <ListItem 
+                style={styles.simpleRow}
+                roundAvatar
+                title={item.title}
+                subtitle={'Vehicles'} 
+                avatar={{ uri: item.picture }}
+            />
+          )}
+          keyExtractor={item => item.title}
+        />
+
+      <FlatList
+            data={this.state.dataSource.species}
+            ListHeaderComponent={this.renderHeader('Species Informations')}
+            renderItem={({item}) => (
+            
+            <ListItem 
+                style={styles.simpleRow}
+                roundAvatar
+                title={item.title}
+                subtitle={'Species'} 
+                avatar={{ uri: item.picture }}
+            />
+          )}
+          keyExtractor={item => item.title}
+        />
 
     </ScrollView>
+
+   
 
     );
   }
