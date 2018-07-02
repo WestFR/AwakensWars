@@ -4,10 +4,10 @@ import { List, ListItem } from "react-native-elements";
 
 
 export default class FilmDetailsPage extends React.Component {
-
-  static navigationOptions = {
-    title: 'Film :' ,
-  };
+  
+  static navigationOptions = ({ navigation }) => ({
+      title: 'Film : ' + `${navigation.state.params.title}`,
+    });
 
   constructor(props){
     super(props);
@@ -56,6 +56,8 @@ export default class FilmDetailsPage extends React.Component {
 
   render(){
 
+    const { params } = this.props.navigation.state;
+
     if(this.state.isLoading) {
       return(
         <View style={styles.centerContainer}>
@@ -65,7 +67,7 @@ export default class FilmDetailsPage extends React.Component {
     }
 
     return(
-    
+
     <View style={styles.simpleContainer}>
 
         <FlatList
