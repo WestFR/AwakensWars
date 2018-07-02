@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-
-import { StyleSheet, FlatList, ActivityIndicator, Text, View  } from 'react-native';
-import NavigationBar from 'react-native-navbar';
+import { AppRegistry, StyleSheet, FlatList, ActivityIndicator, Text, View  } from 'react-native';
 import { List, ListItem } from "react-native-elements";
 
+
 export default class FilmsHomePage extends React.Component {
+
+  static navigationOptions = {
+    title: 'AwakensWars : Films',
+  };
 
   constructor(props){
     super(props);
@@ -51,6 +54,8 @@ export default class FilmsHomePage extends React.Component {
 
   render(){
 
+    const { navigate } = this.props.navigation;
+
     if(this.state.isLoading) {
       return(
         <View style={styles.centerContainer}>
@@ -63,10 +68,6 @@ export default class FilmsHomePage extends React.Component {
     
     <View style={styles.simpleContainer}>
 
-        <NavigationBar
-            title={titleConfig}
-          />
-
         <FlatList
             data={this.state.dataSource}
             renderItem={({item}) => (
@@ -77,6 +78,7 @@ export default class FilmsHomePage extends React.Component {
                 title={item.title}
                 subtitle={item.opening_crawl}
                 avatar={{ uri: item.picture }}
+                onPress={() => navigate('DetailsFilmPage',{url:item.url})}
             />
           )}
           keyExtractor={item => item.title}
@@ -91,10 +93,6 @@ export default class FilmsHomePage extends React.Component {
 }
 
 
-const titleConfig = {
-  title: 'AwakensWars : Films',
-};
-
 const styles = StyleSheet.create({
   centerContainer: {
     flex: 1,
@@ -108,3 +106,7 @@ const styles = StyleSheet.create({
     height: 200
   }
 });
+
+
+
+

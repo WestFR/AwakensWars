@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-
 import { StyleSheet, FlatList, ActivityIndicator, Text, View  } from 'react-native';
-import NavigationBar from 'react-native-navbar';
 import { List, ListItem } from "react-native-elements";
 
+
 export default class FilmDetailsPage extends React.Component {
+
+  static navigationOptions = {
+    title: 'Film :' ,
+  };
 
   constructor(props){
     super(props);
@@ -21,7 +24,9 @@ export default class FilmDetailsPage extends React.Component {
   }
 
   makeRemoteRequest = () => {
-    return fetch('https://swapi.co/api/films')
+    const { params } = this.props.navigation.state;
+
+    return fetch(params.url)
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -63,10 +68,6 @@ export default class FilmDetailsPage extends React.Component {
     
     <View style={styles.simpleContainer}>
 
-        <NavigationBar
-            title={titleConfig}
-          />
-
         <FlatList
             data={this.state.dataSource}
             renderItem={({item}) => (
@@ -90,10 +91,6 @@ export default class FilmDetailsPage extends React.Component {
   }
 }
 
-
-const titleConfig = {
-  title: 'Film : ',
-};
 
 const styles = StyleSheet.create({
   centerContainer: {

@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './js/FilmsHomePage';
+import App from './App';
 
 AppRegistry.registerComponent('AwakensWars', () => App);
