@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, FlatList, ActivityIndicator, Text, View  } from 'react-native';
+import { AppRegistry, StyleSheet, ScrollView, FlatList, ActivityIndicator, Text, View, Alert } from 'react-native';
 import { List, ListItem } from "react-native-elements";
+
+import Moment from 'moment';
 
 
 export default class FilmDetailsPage extends React.Component {
@@ -33,7 +35,7 @@ export default class FilmDetailsPage extends React.Component {
         this.setState({
           isLoading: false,
           refreshing: false,
-          dataSource: responseJson.results,
+          dataSource: responseJson,
         }, function(){
 
         });
@@ -57,6 +59,9 @@ export default class FilmDetailsPage extends React.Component {
   render(){
 
     const { params } = this.props.navigation.state;
+    const { dataSource } = this.state;
+
+    Moment.locale('en');
 
     if(this.state.isLoading) {
       return(
@@ -68,26 +73,39 @@ export default class FilmDetailsPage extends React.Component {
 
     return(
 
-    <View style={styles.simpleContainer}>
+    <ScrollView>
 
-        <FlatList
-            data={this.state.dataSource}
-            renderItem={({item}) => (
-            
-            <ListItem 
+      <ListItem 
                 style={styles.simpleRow}
-                roundAvatar
-                title={item.title}
-                subtitle={item.opening_crawl}
-                avatar={{ uri: item.picture }}
-            />
-          )}
-          keyExtractor={item => item.title}
-          refreshing={this.state.refreshing}
-          onRefresh={this.handleRefresh}
-        />
+                title={`Film name : ${this.state.dataSource.title}`}
+                hideChevron={true}
+      />
 
-      </View>
+      <ListItem 
+                style={styles.simpleRow}
+                title={`Synopsis : ${this.state.dataSource.opening_crawl.substring(0,25)}...`} 
+                onPress={() => Alert.alert('Synopsis Details', `\n${this.state.dataSource.opening_crawl}`)}
+      />
+
+      <ListItem 
+                style={styles.simpleRow}
+                title={`Producer : ${this.state.dataSource.producer}`} 
+                hideChevron={true}
+      />
+
+      <ListItem 
+                style={styles.simpleRow}
+                title={`Director : ${this.state.dataSource.director}`} 
+                hideChevron={true}
+      />
+
+      <ListItem 
+                style={styles.simpleRow}
+                title={`Release date : ${Moment(this.state.dataSource.release_date).format('d MMMM YYYY')}`} 
+                hideChevron={true}
+      />
+
+    </ScrollView>
 
     );
   }
@@ -104,6 +122,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   simpleRow: {
-    height: 200
+    height: 200,
   }
 });

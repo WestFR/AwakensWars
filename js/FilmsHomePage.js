@@ -76,7 +76,7 @@ export default class FilmsHomePage extends React.Component {
                 style={styles.simpleRow}
                 roundAvatar
                 title={item.title}
-                subtitle={item.opening_crawl}
+                subtitle={`${item.opening_crawl.substring(0,25)}...`} 
                 avatar={{ uri: item.picture }}
                 onPress={() => navigate('DetailsFilmPage',{title:item.title,url:item.url})}
             />
