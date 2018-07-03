@@ -3,8 +3,8 @@ import { AppRegistry, View, Text  } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 // Screens
-import FilmsHomePage from './js/FilmsHomePage';
-import FilmDetailsPage from './js/FilmDetailsPage';
+import FilmsHomePage from './jsApp/FilmsHomePage';
+import FilmDetailsPage from './jsApp/FilmDetailsPage';
 
 
 // StackNavigator

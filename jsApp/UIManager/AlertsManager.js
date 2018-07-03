@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Platform, Alert, ActionSheetIOS, Linking } from 'react-native';
 
+import I18n from 'react-native-i18n';
+import { strings } from '../../localizables/localizables';
+
 
 export default class AlertsManager extends React.Component {
 
@@ -16,10 +19,10 @@ export default class AlertsManager extends React.Component {
 
 		if(Platform.OS == "ios") {
 			ActionSheetIOS.showActionSheetWithOptions({
-  				options: ['About', 'Rate me', 'Others apps', 'Cancel'],
+  				options: [I18n.t('aboutTitle'), I18n.t('rateMeTitle'), I18n.t('othersAppsTitle'), I18n.t('cancelTitle')],
   				cancelButtonIndex: 3,
-  				title: 'App informations',
-  				message: 'Please choose the desired action to get the information from the application.',
+  				title: I18n.t('alertMainTitle'),
+  				message: I18n.t('alertMainDesc'),
 			},
 			(buttonIndex) => {
 				
@@ -29,13 +32,13 @@ export default class AlertsManager extends React.Component {
 			});
 		} else {
 			Alert.alert(
-		  		'App informations',
-		  		'Please choose the desired action to get the information from the application.',
+		  		I18n.t('alertMainTitle'),
+		  		I18n.t('alertMainDesc'),
 		  			[
-		    			{text: 'About', onPress: () => this.showAboutAlert() },
-		    			{text: 'Rate me', onPress: () => this.checkAndroidRateMeLink() },
-		    			{text: 'Others apps', onPress: () => this.checkOthersAppsLink() },
-		    			{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+		    			{text: I18n.t('aboutTitle'), onPress: () => this.showAboutAlert() },
+		    			{text: I18n.t('rateMeTitle'), onPress: () => this.checkAndroidRateMeLink() },
+		    			{text: I18n.t('othersAppsTitle'), onPress: () => this.checkOthersAppsLink() },
+		    			{text: I18n.t('cancelTitle'), onPress: () => console.log('cancel_pressed'), style: 'cancel'},
 		  			],
 		  		{ cancelable: false }
 			)
@@ -58,21 +61,25 @@ export default class AlertsManager extends React.Component {
 		if(this.websiteLink != "") { Linking.openURL(this.websiteLink); } else { this.showOthersAppAlert(); }
 	}
 
+	showBasicAlert(title, message) {
+		Alert.alert(title,message);
+	}
+
 	showAboutAlert() {
 		Alert.alert(
-			'About',
-			'First mobile application developed using React Native technology by an independent French developer !\n\nThis application uses an API for displaying game data.\n(https://swapi.co)\n\nThe wallpapers and images used in the application come from open-source sites and are not subject to copyright.\n\nThe source code of the application is available on GitHub for anyone interested in hybrid development (WestFR).');
-	}
+			I18n.t('aboutTitle'),
+			I18n.t('aboutDesc'));
+		}
 
 	showRateMeAlert() {
 		Alert.alert(
-  			'Error',
-  			'The application is not published so no page of the store is available.\n\n See "AlertsManager.js" file if your app is published.');
+  			I18n.t('rateMeTitle'),
+  			I18n.t('rateMeError'));
 	}
 
 	showOthersAppAlert() {
 		Alert.alert(
-  			'Error',
-  			'No website URL for this developer is defined, see AlertsManager.js');
+  			I18n.t('othersAppsTitle'),
+  			I18n.t('othersAppsError'));
 	}
 }

@@ -4,14 +4,18 @@ import { AppRegistry, StyleSheet, ActivityIndicator, View } from 'react-native';
 import { FlatList, Text,  } from 'react-native';
 import { List, ListItem, Button } from "react-native-elements";
 
+import I18n from 'react-native-i18n';
+import { strings } from '../localizables/localizables';
+
 import ApiManager from "./ApiManager/ApiManager";
 import AlertsManager from "./UIManager/AlertsManager";
+
 
 
 export default class FilmsHomePage extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
-    headerTitle: 'AwakensWars : Films',
+    headerTitle: I18n.t('homeTitle'),
     headerRight: (
       <Button
         onPress={() => Alerts.showInformationsAlert()}
@@ -91,7 +95,6 @@ export default class FilmsHomePage extends React.Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   centerContainer: {
     flex: 1,
@@ -102,7 +105,4 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
-
-
-
 

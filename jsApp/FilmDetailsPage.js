@@ -4,16 +4,18 @@ import { AppRegistry, StyleSheet, ActivityIndicator, View, Alert } from 'react-n
 import { ScrollView, FlatList, Text } from 'react-native';
 import { List, ListItem, Button } from "react-native-elements";
 
+import I18n from 'react-native-i18n';
+import { strings } from '../localizables/localizables';
+import Moment from 'moment';
+
 import ApiManager from "./ApiManager/ApiManager";
 import AlertsManager from "./UIManager/AlertsManager";
-
-import Moment from 'moment';
 
 
 export default class FilmDetailsPage extends React.Component {
   
   static navigationOptions = ({ navigation }) => ({
-    headerTitle: 'Film : ' + `${navigation.state.params.title}`,
+    headerTitle: I18n.t('detailFilmTitle') + `${navigation.state.params.title}`,
     headerRight: (
       <Button
         onPress={() => Alerts.showInformationsAlert()}
@@ -72,7 +74,7 @@ export default class FilmDetailsPage extends React.Component {
     const { params } = this.props.navigation.state;
     const { dataSource } = this.state;
 
-    Moment.locale('en');
+    Moment.locale(I18n.currentLocale());
 
     if(this.state.isLoading) {
       return(
@@ -88,35 +90,35 @@ export default class FilmDetailsPage extends React.Component {
     <ScrollView>
       
       <View>
-        {this.renderHeader('General Informations')}
+        {this.renderHeader(I18n.t('detailGeneral'))}
 
         <ListItem 
                   style={styles.simpleRow}
-                  title={`Film name : ${this.state.dataSource.title}`}
+                  title= { I18n.t('detailFilmName') + `${this.state.dataSource.title}` }
                   hideChevron={true}
         />
 
         <ListItem 
                   style={styles.simpleRow}
-                  title={`Synopsis : ${this.state.dataSource.opening_crawl.substring(0,25)}...`} 
-                  onPress={() => Alert.alert('Synopsis Details', `\n${this.state.dataSource.opening_crawl}`)}
+                  title={ I18n.t('detailFilmSynopsis') + `${this.state.dataSource.opening_crawl.substring(0,25)}...` } 
+                  onPress={() => Alert.alert(I18n.t('detailFilmAllSynopsis'), `\n${this.state.dataSource.opening_crawl}`)}
         />
 
         <ListItem 
                   style={styles.simpleRow}
-                  title={`Producer : ${this.state.dataSource.producer}`} 
+                  title={ I18n.t('detailFilmProducer') + `${this.state.dataSource.producer}` } 
                   hideChevron={true}
         />
 
         <ListItem 
                   style={styles.simpleRow}
-                  title={`Director : ${this.state.dataSource.director}`} 
+                  title={ I18n.t('detailFilmDirector') + `${this.state.dataSource.director}` } 
                   hideChevron={true}
         />
 
         <ListItem 
                   style={styles.simpleRow}
-                  title={`Release date : ${Moment(this.state.dataSource.release_date).format('d MMMM YYYY')}`} 
+                  title={ I18n.t('detailFilmReleaseDate') + `${Moment(this.state.dataSource.release_date).format('d MMMM YYYY')}`} 
                   hideChevron={true}
         />
 
@@ -125,7 +127,7 @@ export default class FilmDetailsPage extends React.Component {
 
       <FlatList
             data={this.state.characterDataSource}
-            ListHeaderComponent={this.renderHeader('Characters Informations')}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailCharacters'))}
             renderItem={({item}) => (
             
             <ListItem 
@@ -141,7 +143,7 @@ export default class FilmDetailsPage extends React.Component {
 
       <FlatList
             data={this.state.dataSource.planets}
-            ListHeaderComponent={this.renderHeader('Planets Informations')}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailPlanets'))}
             renderItem={({item}) => (
             
             <ListItem 
@@ -157,7 +159,7 @@ export default class FilmDetailsPage extends React.Component {
 
       <FlatList
             data={this.state.dataSource.starships}
-            ListHeaderComponent={this.renderHeader('Starships Informations')}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailStarships'))}
             renderItem={({item}) => (
             
             <ListItem 
@@ -173,7 +175,7 @@ export default class FilmDetailsPage extends React.Component {
 
       <FlatList
             data={this.state.dataSource.vehicles}
-            ListHeaderComponent={this.renderHeader('Vehicles Informations')}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailVehicles'))}
             renderItem={({item}) => (
             
             <ListItem 
@@ -189,7 +191,7 @@ export default class FilmDetailsPage extends React.Component {
 
       <FlatList
             data={this.state.dataSource.species}
-            ListHeaderComponent={this.renderHeader('Species Informations')}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailSpecies'))}
             renderItem={({item}) => (
             
             <ListItem 
