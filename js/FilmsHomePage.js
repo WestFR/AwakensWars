@@ -1,56 +1,56 @@
 import React, { Component } from "react";
-import { AppRegistry, StyleSheet, FlatList, ActivityIndicator, Text, View  } from 'react-native';
-import { List, ListItem } from "react-native-elements";
+
+import { AppRegistry, StyleSheet, ActivityIndicator, View } from 'react-native';
+import { FlatList, Text,  } from 'react-native';
+import { List, ListItem, Button } from "react-native-elements";
+
+import ApiManager from "./ApiManager/ApiManager";
+import AlertsManager from "./UIManager/AlertsManager";
 
 
 export default class FilmsHomePage extends React.Component {
 
-  static navigationOptions = {
-    title: 'AwakensWars : Films',
-  };
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: 'AwakensWars : Films',
+    headerRight: (
+      <Button
+        onPress={() => Alerts.showInformationsAlert()}
+        buttonStyle={{ backgroundColor: "rgba(0,0,0,0)" }}
+        icon={{name: 'md-more', type: 'ionicon', size: 24, color: 'blue'}}
+        title=""
+      />
+    ),
+  });
+
 
   constructor(props){
     super(props);
-    
+
+    APIManager = new ApiManager();
+    Alerts = new AlertsManager();
+
     this.state ={ 
       isLoading: true,
       refreshing: false
     }
-
   }
+
 
   componentDidMount(){
-    this.makeRemoteRequest();
+    APIManager.getAllFilms(this);
   }
 
-  makeRemoteRequest = () => {
-    return fetch('https://swapi.co/api/films')
-      .then((response) => response.json())
-      .then((responseJson) => {
-
-        this.setState({
-          isLoading: false,
-          refreshing: false,
-          dataSource: responseJson.results,
-        }, function(){
-
-        });
-
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-  };
 
   handleRefresh = () => {
     this.setState({
         refreshing: true
       }, 
       () => {
-        this.makeRemoteRequest();
+        APIManager.getAllFilms(this);
       }
     );
   };
+
 
   render(){
 
@@ -72,8 +72,7 @@ export default class FilmsHomePage extends React.Component {
             data={this.state.dataSource}
             renderItem={({item}) => (
             
-            <ListItem 
-                style={styles.simpleRow}
+            <ListItem
                 roundAvatar
                 title={item.title}
                 subtitle={`${item.opening_crawl.substring(0,25)}...`} 
@@ -101,9 +100,6 @@ const styles = StyleSheet.create({
   },
   simpleContainer: {
     flex: 1
-  },
-  simpleRow: {
-    height: 200
   }
 });
 

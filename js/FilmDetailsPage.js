@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import { AppRegistry, StyleSheet, ScrollView, FlatList, ActivityIndicator, Text, View, Alert } from 'react-native';
-import { List, ListHeader, ListItem } from "react-native-elements";
+
+import { AppRegistry, StyleSheet, ActivityIndicator, View, Alert } from 'react-native';
+import { ScrollView, FlatList, Text } from 'react-native';
+import { List, ListItem, Button } from "react-native-elements";
+
+import ApiManager from "./ApiManager/ApiManager";
+import AlertsManager from "./UIManager/AlertsManager";
 
 import Moment from 'moment';
 
@@ -8,57 +13,57 @@ import Moment from 'moment';
 export default class FilmDetailsPage extends React.Component {
   
   static navigationOptions = ({ navigation }) => ({
-      title: 'Film : ' + `${navigation.state.params.title}`,
-    });
+    headerTitle: 'Film : ' + `${navigation.state.params.title}`,
+    headerRight: (
+      <Button
+        onPress={() => Alerts.showInformationsAlert()}
+        buttonStyle={{ backgroundColor: "rgba(0,0,0,0)" }}
+        icon={{name: 'md-more', type: 'ionicon', size: 24, color: 'blue'}}
+        title=""
+      />
+    ),
+  });
 
   constructor(props){
     super(props);
+
+    APIManager = new ApiManager();
+    Alerts = new AlertsManager();
     
     this.state ={ 
       isLoading: true,
       refreshing: false
     }
 
+    //this.getCharactersInfos = this.getCharactersInfos.bind(this);
   }
+
 
   componentDidMount(){
-    this.makeRemoteRequest();
+    APIManager.getOneFilm(this);
   }
 
-  makeRemoteRequest = () => {
-    const { params } = this.props.navigation.state;
 
-    return fetch(params.url)
-      .then((response) => response.json())
-      .then((responseJson) => {
+  
 
-        this.setState({
-          isLoading: false,
-          refreshing: false,
-          dataSource: responseJson,
-        }, function(){
-
-        });
-
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-  };
 
   handleRefresh = () => {
     this.setState({
         refreshing: true
       }, 
       () => {
-        this.makeRemoteRequest();
+        APIManager.getOneFilm(this);
       }
     );
   };
 
   renderHeader(titleToShow) {
      return (
-      <Text>{titleToShow}</Text>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headertext}>
+          {titleToShow}
+        </Text>
+      </View>
     )
   }
 
@@ -119,7 +124,7 @@ export default class FilmDetailsPage extends React.Component {
 
 
       <FlatList
-            data={this.state.dataSource.characters}
+            data={this.state.characterDataSource}
             ListHeaderComponent={this.renderHeader('Characters Informations')}
             renderItem={({item}) => (
             
@@ -213,8 +218,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  simpleContainer: {
-    flex: 1
+  headerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    backgroundColor: 'grey'
+  },
+  headertext: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white'
   },
   simpleRow: {
     height: 200,
