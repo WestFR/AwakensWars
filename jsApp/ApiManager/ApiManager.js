@@ -146,29 +146,9 @@ export default class ApiManager extends React.Component {
 	          var speciesInfos = []
 	          classCallback.state.dataSource.species.forEach(function(element, index) {
 
-	          	if (index === classCallback.state.dataSource.species.length - 1) { 
-	          	
-		          	fetch(element)
-				      .then((response) => response.json())
-				      .then((responseJson) => {
-
-				      	speciesInfos.push(responseJson)
-
-				        classCallback.setState({
-				          refreshing: false,
-				          speciesDataSource: speciesInfos,
-				        }, function(){
-
-				        });
-
-				      })
-				      .catch((error) =>{
-				        console.error(error);
-		      		});
-
-				} else {
-
-					fetch(element)
+	          	if (Object.is(classCallback.state.dataSource.species.length - 1, index)) { 
+	          		
+	          		fetch(element)
 				      .then((response) => response.json())
 				      .then((responseJson) => {
 
@@ -186,10 +166,33 @@ export default class ApiManager extends React.Component {
 				      .catch((error) =>{
 				        console.error(error);
 		      		});
+		          	
+
+				} else {
+
+					fetch(element)
+				      .then((response) => response.json())
+				      .then((responseJson) => {
+
+				      	speciesInfos.push(responseJson)
+
+				        classCallback.setState({
+				          refreshing: false,
+				          speciesDataSource: speciesInfos,
+				        }, function(){
+
+				        });
+
+				      })
+				      .catch((error) =>{
+				        console.error(error);
+		      		});
+
 				}
 
 	          });
-	          })
+
+	         })
 
 
 	      })
