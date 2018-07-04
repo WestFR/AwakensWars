@@ -13,7 +13,7 @@ export default class ApiManager extends React.Component {
 
   	// MARK : - GetAllFilms Informations
   	getAllFilms = (classCallback) => {
-      return fetch('https://swapi.co/api/films')
+      fetch('https://swapi.co/api/films')
         .then((response) => response.json())
         .then((responseJson) => {
 
@@ -41,20 +41,155 @@ export default class ApiManager extends React.Component {
 	      .then((responseJson) => {
 
 	        classCallback.setState({
-	          isLoading: false,
 	          refreshing: false,
 	          dataSource: responseJson,
 	        }, function(){
 
 
+              
+	          var characetersInfos = []
 	          classCallback.state.dataSource.characters.forEach(function(element, index) {
-	          	//this.getCharactersInfos(classCallback, element, index);
+	          	
+	          	fetch(element)
+			      .then((response) => response.json())
+			      .then((responseJson) => {
+
+			      	characetersInfos.push(responseJson)
+
+			        classCallback.setState({
+			          refreshing: false,
+			          characterDataSource: characetersInfos,
+			        }, function(){
+
+			        });
+
+			      })
+			      .catch((error) =>{
+			        console.error(error);
+	      		});
+
 	          });
-	            /*responseJson.planets
-	            responseJson.starships
-	            responseJson.vehicles
-	            responseJson.species*/
-	        });
+
+
+	          var planetsInfos = []
+	          classCallback.state.dataSource.planets.forEach(function(element, index) {
+	          	
+	          	fetch(element)
+			      .then((response) => response.json())
+			      .then((responseJson) => {
+
+			      	planetsInfos.push(responseJson)
+
+			        classCallback.setState({
+			          refreshing: false,
+			          planetDataSource: planetsInfos,
+			        }, function(){
+
+			        });
+
+			      })
+			      .catch((error) =>{
+			        console.error(error);
+	      		});
+
+	          });
+
+
+	          var starshipsInfos = []
+	          classCallback.state.dataSource.starships.forEach(function(element, index) {
+	          	
+	          	fetch(element)
+			      .then((response) => response.json())
+			      .then((responseJson) => {
+
+			      	starshipsInfos.push(responseJson)
+
+			        classCallback.setState({
+			          refreshing: false,
+			          starshipDataSource: starshipsInfos,
+			        }, function(){
+
+			        });
+
+			      })
+			      .catch((error) =>{
+			        console.error(error);
+	      		});
+
+	          });
+
+
+	          var vehiclesInfos = []
+	          classCallback.state.dataSource.vehicles.forEach(function(element, index) {
+	          	
+	          	fetch(element)
+			      .then((response) => response.json())
+			      .then((responseJson) => {
+
+			      	vehiclesInfos.push(responseJson)
+
+			        classCallback.setState({
+			          refreshing: false,
+			          vehiclesDataSource: vehiclesInfos,
+			        }, function(){
+
+			        });
+
+			      })
+			      .catch((error) =>{
+			        console.error(error);
+	      		});
+
+	          });
+
+
+	          var speciesInfos = []
+	          classCallback.state.dataSource.species.forEach(function(element, index) {
+
+	          	if (index === classCallback.state.dataSource.species.length - 1) { 
+	          	
+		          	fetch(element)
+				      .then((response) => response.json())
+				      .then((responseJson) => {
+
+				      	speciesInfos.push(responseJson)
+
+				        classCallback.setState({
+				          refreshing: false,
+				          speciesDataSource: speciesInfos,
+				        }, function(){
+
+				        });
+
+				      })
+				      .catch((error) =>{
+				        console.error(error);
+		      		});
+
+				} else {
+
+					fetch(element)
+				      .then((response) => response.json())
+				      .then((responseJson) => {
+
+				      	speciesInfos.push(responseJson)
+
+				        classCallback.setState({
+				          isLoading: false,
+				          refreshing: false,
+				          speciesDataSource: speciesInfos,
+				        }, function(){
+
+				        });
+
+				      })
+				      .catch((error) =>{
+				        console.error(error);
+		      		});
+				}
+
+	          });
+	          })
 
 
 	      })
@@ -65,16 +200,18 @@ export default class ApiManager extends React.Component {
 
 
   	// MARK : - GetOneCharacter Information
-  	/*getCharactersInfos = (classCallback, elementUrl, count) => {
+  	/*getCharactersInfos = (classCallback, elementUrl, array) => {
 
 	    return fetch(elementUrl)
 	      .then((response) => response.json())
 	      .then((responseJson) => {
 
+	      	array.push(responseJson)
+
 	        classCallback.setState({
 	          isLoading: false,
 	          refreshing: false,
-	          characterDataSource: responseJson,
+	          characterDataSource: array,
 	        }, function(){
 
 	        });

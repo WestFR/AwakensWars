@@ -1,4 +1,4 @@
-package com.awakenswars;
+package com.franconysteven.awakenswars;
 
 import android.app.Application;
 

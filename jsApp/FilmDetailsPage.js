@@ -36,8 +36,6 @@ export default class FilmDetailsPage extends React.Component {
       isLoading: true,
       refreshing: false
     }
-
-    //this.getCharactersInfos = this.getCharactersInfos.bind(this);
   }
 
 
@@ -92,32 +90,27 @@ export default class FilmDetailsPage extends React.Component {
       <View>
         {this.renderHeader(I18n.t('detailGeneral'))}
 
-        <ListItem 
-                  style={styles.simpleRow}
+        <ListItem
                   title= { I18n.t('detailFilmName') + `${this.state.dataSource.title}` }
                   hideChevron={true}
         />
 
-        <ListItem 
-                  style={styles.simpleRow}
+        <ListItem
                   title={ I18n.t('detailFilmSynopsis') + `${this.state.dataSource.opening_crawl.substring(0,25)}...` } 
                   onPress={() => Alert.alert(I18n.t('detailFilmAllSynopsis'), `\n${this.state.dataSource.opening_crawl}`)}
         />
 
-        <ListItem 
-                  style={styles.simpleRow}
+        <ListItem
                   title={ I18n.t('detailFilmProducer') + `${this.state.dataSource.producer}` } 
                   hideChevron={true}
         />
 
-        <ListItem 
-                  style={styles.simpleRow}
+        <ListItem
                   title={ I18n.t('detailFilmDirector') + `${this.state.dataSource.director}` } 
                   hideChevron={true}
         />
 
-        <ListItem 
-                  style={styles.simpleRow}
+        <ListItem
                   title={ I18n.t('detailFilmReleaseDate') + `${Moment(this.state.dataSource.release_date).format('d MMMM YYYY')}`} 
                   hideChevron={true}
         />
@@ -130,79 +123,74 @@ export default class FilmDetailsPage extends React.Component {
             ListHeaderComponent={this.renderHeader(I18n.t('detailCharacters'))}
             renderItem={({item}) => (
             
-            <ListItem 
-                style={styles.simpleRow}
+            <ListItem
                 roundAvatar
-                title={item.title}
-                subtitle={'Characters'} 
+                title={item.name}
+                subtitle={item.gender} 
                 avatar={{ uri: item.picture }}
             />
           )}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.name}
         />
 
       <FlatList
-            data={this.state.dataSource.planets}
+            data={this.state.planetDataSource}
             ListHeaderComponent={this.renderHeader(I18n.t('detailPlanets'))}
             renderItem={({item}) => (
             
-            <ListItem 
-                style={styles.simpleRow}
+            <ListItem
                 roundAvatar
-                title={item.title}
-                subtitle={'Planets'} 
+                title={item.name}
+                subtitle={item.population} 
                 avatar={{ uri: item.picture }}
             />
           )}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.name}
         />
 
       <FlatList
-            data={this.state.dataSource.starships}
+            data={this.state.starshipDataSource}
             ListHeaderComponent={this.renderHeader(I18n.t('detailStarships'))}
             renderItem={({item}) => (
             
-            <ListItem 
-                style={styles.simpleRow}
+            <ListItem
                 roundAvatar
-                title={item.title}
-                subtitle={'Starships'} 
+                title={item.name}
+                subtitle={item.manufacturer} 
                 avatar={{ uri: item.picture }}
             />
           )}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.name}
         />
 
       <FlatList
-            data={this.state.dataSource.vehicles}
+            data={this.state.vehiclesDataSource}
             ListHeaderComponent={this.renderHeader(I18n.t('detailVehicles'))}
             renderItem={({item}) => (
             
-            <ListItem 
-                style={styles.simpleRow}
+            <ListItem
                 roundAvatar
-                title={item.title}
-                subtitle={'Vehicles'} 
+                title={item.name}
+                subtitle={item.manufacturer} 
                 avatar={{ uri: item.picture }}
             />
           )}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.name}
         />
 
       <FlatList
-            data={this.state.dataSource.species}
+            data={this.state.speciesDataSource}
             ListHeaderComponent={this.renderHeader(I18n.t('detailSpecies'))}
             renderItem={({item}) => (
             
-            <ListItem 
-                style={styles.simpleRow}
+            <ListItem
                 roundAvatar
-                title={item.title}
-                subtitle={'Species'} 
+                title={item.name}
+                subtitle={item.designation} 
                 avatar={{ uri: item.picture }}
             />
           )}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.name}
         />
 
     </ScrollView>
@@ -231,8 +219,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white'
-  },
-  simpleRow: {
-    height: 200,
   }
 });
