@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 
-import { AppRegistry, StyleSheet, ActivityIndicator, View } from 'react-native';
+import { AppRegistry, ActivityIndicator, View } from 'react-native';
 import { FlatList, Text,  } from 'react-native';
 import { List, ListItem, Button } from "react-native-elements";
+import SplashScreen from 'react-native-splash-screen';
 
 import I18n from 'react-native-i18n';
-import { strings } from '../localizables/localizables';
+import { strings } from '../Ressources/Localizables/localizables';
 
-import ApiManager from "./ApiManager/ApiManager";
-import AlertsManager from "./UIManager/AlertsManager";
+import styles from '../Ressources/Styles/Style';
 
+import ApiManager from "../ApiManager/ApiManager";
+import AlertsManager from "../UIManager/AlertsManager";
 
 
 export default class FilmsHomePage extends React.Component {
@@ -41,6 +43,7 @@ export default class FilmsHomePage extends React.Component {
 
 
   componentDidMount(){
+    SplashScreen.hide();
     APIManager.getAllFilms(this);
   }
 
@@ -81,7 +84,7 @@ export default class FilmsHomePage extends React.Component {
                 title={item.title}
                 subtitle={`${item.opening_crawl.substring(0,25)}...`} 
                 avatar={{ uri: item.picture }}
-                onPress={() => navigate('DetailsFilmPage',{title:item.title,url:item.url})}
+                onPress={() => navigate('FilmDetailsPage',{title:item.title,url:item.url})}
             />
           )}
           keyExtractor={item => item.title}
@@ -94,15 +97,4 @@ export default class FilmsHomePage extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  centerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  simpleContainer: {
-    flex: 1
-  }
-});
 

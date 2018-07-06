@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 
-import { AppRegistry, StyleSheet, ActivityIndicator, View, Alert } from 'react-native';
+import { AppRegistry, ActivityIndicator, View, Alert } from 'react-native';
 import { ScrollView, FlatList, Text } from 'react-native';
 import { List, ListItem, Button } from "react-native-elements";
 
 import I18n from 'react-native-i18n';
-import { strings } from '../localizables/localizables';
+import { strings } from '../Ressources/Localizables/localizables';
 import Moment from 'moment';
 
-import ApiManager from "./ApiManager/ApiManager";
-import AlertsManager from "./UIManager/AlertsManager";
+import styles from '../Ressources/Styles/Style';
+
+import ApiManager from "../ApiManager/ApiManager";
+import AlertsManager from "../UIManager/AlertsManager";
 
 
 export default class FilmDetailsPage extends React.Component {
@@ -25,6 +27,7 @@ export default class FilmDetailsPage extends React.Component {
       />
     ),
   });
+
 
   constructor(props){
     super(props);
@@ -44,9 +47,6 @@ export default class FilmDetailsPage extends React.Component {
   }
 
 
-  
-
-
   handleRefresh = () => {
     this.setState({
         refreshing: true
@@ -56,6 +56,7 @@ export default class FilmDetailsPage extends React.Component {
       }
     );
   };
+
 
   renderHeader(titleToShow) {
      return (
@@ -67,12 +68,15 @@ export default class FilmDetailsPage extends React.Component {
     )
   }
 
+
   render(){
 
+    const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
     const { dataSource } = this.state;
 
-    Moment.locale(I18n.currentLocale());
+    //I18n.currentLocale()
+    Moment.locale("en");
 
     if(this.state.isLoading) {
       return(
@@ -128,6 +132,7 @@ export default class FilmDetailsPage extends React.Component {
                 title={item.name}
                 subtitle={item.gender} 
                 avatar={{ uri: item.picture }}
+                onPress={() => navigate('CharacterDetailsPage',{title:item.name,url:item.url})}
             />
           )}
           keyExtractor={item => item.name}
@@ -200,24 +205,3 @@ export default class FilmDetailsPage extends React.Component {
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  centerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 40,
-    backgroundColor: 'grey'
-  },
-  headertext: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'white'
-  }
-});

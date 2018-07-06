@@ -146,7 +146,7 @@ export default class ApiManager extends React.Component {
 	          var speciesInfos = []
 	          classCallback.state.dataSource.species.forEach(function(element, index) {
 
-	          	if (Object.is(classCallback.state.dataSource.species.length - 1, index)) { 
+	          	if (index === classCallback.state.dataSource.species.length - 1) { 
 	          		
 	          		fetch(element)
 				      .then((response) => response.json())
@@ -203,18 +203,16 @@ export default class ApiManager extends React.Component {
 
 
   	// MARK : - GetOneCharacter Information
-  	/*getCharactersInfos = (classCallback, elementUrl, array) => {
+  	getCharacterInfos = (classCallback) => {
+    	const { params } = classCallback.props.navigation.state;
 
-	    return fetch(elementUrl)
+	    return fetch(params.url)
 	      .then((response) => response.json())
 	      .then((responseJson) => {
 
-	      	array.push(responseJson)
-
 	        classCallback.setState({
 	          isLoading: false,
-	          refreshing: false,
-	          characterDataSource: array,
+	          dataSource: responseJson,
 	        }, function(){
 
 	        });
@@ -223,6 +221,6 @@ export default class ApiManager extends React.Component {
 	      .catch((error) =>{
 	        console.error(error);
 	      });
-	};*/
+	};
 
 }

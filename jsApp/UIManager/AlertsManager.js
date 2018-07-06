@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Platform, Alert, ActionSheetIOS, Linking } from 'react-native';
 
 import I18n from 'react-native-i18n';
-import { strings } from '../../localizables/localizables';
+import { strings } from '../Ressources/Localizables/localizables';
 
 
 export default class AlertsManager extends React.Component {
@@ -40,7 +40,7 @@ export default class AlertsManager extends React.Component {
 		    			{text: I18n.t('othersAppsTitle'), onPress: () => this.checkOthersAppsLink() },
 		    			{text: I18n.t('cancelTitle'), onPress: () => console.log('cancel_pressed'), style: 'cancel'},
 		  			],
-		  		{ cancelable: false }
+		  		{ cancelable: true }
 			)
 		}
 	}
