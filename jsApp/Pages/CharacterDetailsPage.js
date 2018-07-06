@@ -90,12 +90,12 @@ export default class CharacterDetailsPage extends React.Component {
         {this.renderHeader(I18n.t('detailGeneral'))}
 
         <ListItem
-                  title= { I18n.t('detailFilmName') + `${this.state.dataSource.name}` }
+                  title= { I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.name}` }
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmSynopsis') + `${this.state.dataSource.gender}` } 
+                  title={ I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.gender}` } 
                   hideChevron={true}
         />
 
@@ -114,23 +114,77 @@ export default class CharacterDetailsPage extends React.Component {
                   hideChevron={true}
         />
 
+        <ListItem
+                  title={ I18n.t('detailFilmReleaseDate') + `${this.state.planetDataSource.name}` } 
+                  hideChevron={true}
+        />
+
       </View>
 
-
       <FlatList
-            data={this.state.characterDataSource}
-            ListHeaderComponent={this.renderHeader(I18n.t('detailCharacters'))}
+            data={this.state.speciesDataSource}
             renderItem={({item}) => (
             
             <ListItem
                 roundAvatar
                 title={item.name}
-                subtitle={item.gender} 
+                subtitle={item.designation} 
                 avatar={{ uri: item.picture }}
+                hideChevron={true}
             />
           )}
           keyExtractor={item => item.name}
         />
+
+      <FlatList
+            data={this.state.vehiclesDataSource}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailVehicles'))}
+            renderItem={({item}) => (
+            
+            <ListItem
+                roundAvatar
+                title={item.name}
+                subtitle={item.manufacturer} 
+                avatar={{ uri: item.picture }}
+                hideChevron={true}
+            />
+          )}
+          keyExtractor={item => item.name}
+        />
+
+      <FlatList
+            data={this.state.starshipDataSource}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailStarships'))}
+            renderItem={({item}) => (
+            
+            <ListItem
+                roundAvatar
+                title={item.name}
+                subtitle={item.manufacturer} 
+                avatar={{ uri: item.picture }}
+                hideChevron={true}
+            />
+          )}
+          keyExtractor={item => item.name}
+        />
+
+      <FlatList
+            data={this.state.filmDataSource}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailStarships'))}
+            renderItem={({item}) => (
+            
+            <ListItem
+                roundAvatar
+                title={item.title}
+                subtitle={`${item.opening_crawl.substring(0,25)}...`} 
+                avatar={{ uri: item.picture }}
+                hideChevron={true}
+            />
+          )}
+          keyExtractor={item => item.name}
+        />
+
+     
 
     </ScrollView>
 

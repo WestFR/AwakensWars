@@ -148,6 +148,7 @@ export default class FilmDetailsPage extends React.Component {
                 title={item.name}
                 subtitle={item.population} 
                 avatar={{ uri: item.picture }}
+                onPress={() => navigate('PlanetDetailsPage',{title:item.name,url:item.url})}
             />
           )}
           keyExtractor={item => item.name}
