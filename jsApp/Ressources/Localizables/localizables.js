@@ -7,20 +7,29 @@ I18n.translations = {
   en: {
     homeTitle: 'AwakensWars : Films',
     
-    detailFilmTitle: 'Film : ',
     detailGeneral: 'General informations',
+
+    detailFilmTitle: 'Film : ',
     detailFilmName: 'Film name : ',
     detailFilmSynopsis: 'Synopsis : ',
     detailFilmAllSynopsis: 'Synopsis details',
     detailFilmProducer: 'Producer : ',
     detailFilmDirector: 'Director : ',
     detailFilmReleaseDate: 'Release date : ',
-    detailCharacters: 'Characters informations',
+    
+    detailCharacterTitle: 'Character : ',
+    detailCharacterName : 'Character name : ',
+    detailCharacterGender: 'Gender : ',
+
+    detailCharacterHomeworld : 'Home : ',
+
+    detailsFilms: 'Films informations',
+    detailsCharacters: 'Characters informations',
     detailPlanets: 'Planets informations',
     detailStarships: 'Starships informations',
     detailVehicles: 'Vehicles informations',
     detailSpecies: 'Species informations',
-    detailCharacterTitle: 'Character : ',
+
     alertMainTitle: 'App informations',
     alertMainDesc: 'Please choose the desired action to get the information from the application.',
     aboutTitle: 'About',
@@ -34,20 +43,29 @@ I18n.translations = {
   fr: {
     homeTitle: 'AwakensWars : Films',
     
-    detailFilmTitle: 'Film : ',
     detailGeneral: 'Informations générales',
+
+    detailFilmTitle: 'Film : ',
     detailFilmName: 'Nom du film : ',
     detailFilmSynopsis: 'Synopsis : ',
     detailFilmAllSynopsis: 'Détails du synopsis',
     detailFilmProducer: 'Producteur : ',
     detailFilmDirector: 'Directeur : ',
     detailFilmReleaseDate: 'Date de sortie : ',
+    
+    detailCharacterTitle: 'Personnage : ',
+    detailCharacterName : 'Nom du personnage : ',
+    detailCharacterGender: 'Genre : ',
+
+    detailCharacterHomeworld : 'Maison : ',
+
+    detailsFilms: 'Informations films',
     detailCharacters: 'Informations personnages',
     detailPlanets: 'Informations planètes',
     detailStarships: 'Informations vaisseaux',
     detailVehicles: 'Informations véhicules',
     detailSpecies: 'Informations espèces',
-    detailCharacterTitle: 'Personnage : ',
+
     alertMainTitle: 'Informations de l\'application',
     alertMainDesc: 'Veuillez choisir l\'action souhaitée pour obtenir les informations de l\'application.',
     aboutTitle: 'A propos',

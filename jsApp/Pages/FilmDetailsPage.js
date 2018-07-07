@@ -164,6 +164,7 @@ export default class FilmDetailsPage extends React.Component {
                 title={item.name}
                 subtitle={item.manufacturer} 
                 avatar={{ uri: item.picture }}
+                onPress={() => navigate('StarshipDetailsPage',{title:item.name,url:item.url})}
             />
           )}
           keyExtractor={item => item.name}
@@ -179,6 +180,7 @@ export default class FilmDetailsPage extends React.Component {
                 title={item.name}
                 subtitle={item.manufacturer} 
                 avatar={{ uri: item.picture }}
+                onPress={() => navigate('VehicleDetailsPage',{title:item.name,url:item.url})}
             />
           )}
           keyExtractor={item => item.name}

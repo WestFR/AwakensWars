@@ -185,9 +185,9 @@ export default class ApiManager extends React.Component {
 	          classCallback.state.dataSource.films.forEach(function(elementURL, index) {
 	          	
 	          	if (index === classCallback.state.dataSource.films.length - 1) { 
-	          		APIManager.getFilmsInfos(classCallback, starshipsInfos, filmsInfos, false);
+	          		APIManager.getFilmsInfos(classCallback, elementURL, filmsInfos, false);
 				} else {
-					APIManager.getFilmsInfos(classCallback, starshipsInfos, filmsInfos, true);
+					APIManager.getFilmsInfos(classCallback, elementURL, filmsInfos, true);
 				}
 
 	          });

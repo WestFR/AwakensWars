@@ -90,12 +90,12 @@ export default class CharacterDetailsPage extends React.Component {
         {this.renderHeader(I18n.t('detailGeneral'))}
 
         <ListItem
-                  title= { I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.name}` }
+                  title= { I18n.t('detailCharacterName') + `${this.state.dataSource.name}` }
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.gender}` } 
+                  title={ I18n.t('detailCharacterGender') + `${this.state.dataSource.gender}` } 
                   hideChevron={true}
         />
 
@@ -115,7 +115,7 @@ export default class CharacterDetailsPage extends React.Component {
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmReleaseDate') + `${this.state.planetDataSource.name}` } 
+                  title={ I18n.t('detailCharacterHomeworld') + `${this.state.planetDataSource.name}` } 
                   hideChevron={true}
         />
 
