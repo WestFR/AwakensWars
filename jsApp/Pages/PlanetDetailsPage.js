@@ -90,44 +90,47 @@ export default class PlanetDetailsPage extends React.Component {
         {this.renderHeader(I18n.t('detailGeneral'))}
 
         <ListItem
-                  title= { I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.name}` }
+                  title= { I18n.t('detailPlanetName') + `${this.state.dataSource.name}` }
                   hideChevron={true}
         />
 
+
+        {this.renderHeader(I18n.t('detailDetails'))}
+
         <ListItem
-                  title={ I18n.t('detailFilmReleaseDate') + 
-                          `${this.state.dataSource.rotation_period}` + 
+                  title={ I18n.t('detailPlanetCaract') + 
+                          `${this.state.dataSource.rotation_period}` + " / " + 
                           `${this.state.dataSource.orbital_period}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmProducer') + `${this.state.dataSource.diameter}` } 
+                  title={ I18n.t('detailPlanetDiameter') + `${this.state.dataSource.diameter}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmDirector') + `${this.state.dataSource.climate}` } 
+                  title={ I18n.t('detailPlanetClimate') + `${this.state.dataSource.climate}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.gravity}` } 
+                  title={ I18n.t('detailPlanetGravity') + `${this.state.dataSource.gravity}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.terrain}` } 
+                  title={ I18n.t('detailPlanetTerrain') + `${this.state.dataSource.terrain}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.surface_water}` } 
+                  title={ I18n.t('detailPlanetWater') + `${this.state.dataSource.surface_water}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.population}` } 
+                  title={ I18n.t('detailPlanetPopulation') + `${this.state.dataSource.population}` } 
                   hideChevron={true}
         />
 

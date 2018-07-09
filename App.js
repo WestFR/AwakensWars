@@ -11,7 +11,7 @@ import CharacterDetailsPage from './jsApp/Pages/CharacterDetailsPage';
 import PlanetDetailsPage from './jsApp/Pages/PlanetDetailsPage';
 import StarshipDetailsPage from './jsApp/Pages/StarshipDetailsPage';
 import VehicleDetailsPage from './jsApp/Pages/VehicleDetailsPage';
-/*import SpecieDetailsPage from './jsApp/Pages/SpecieDetailsPage';*/
+import SpecieDetailsPage from './jsApp/Pages/SpecieDetailsPage';
 
 
 // StackNavigator
@@ -22,7 +22,7 @@ const myApplication = StackNavigator({
   PlanetDetailsPage: { screen: PlanetDetailsPage},
   StarshipDetailsPage: { screen: StarshipDetailsPage},
   VehicleDetailsPage: { screen: VehicleDetailsPage},
-  /*SpecieDetailsPage: { screen: SpecieDetailsPage},*/
+  SpecieDetailsPage: { screen: SpecieDetailsPage},
 });
 
 export default myApplication;

@@ -99,18 +99,36 @@ export default class CharacterDetailsPage extends React.Component {
                   hideChevron={true}
         />
 
+
+        {this.renderHeader(I18n.t('detailDetails'))}
+
         <ListItem
-                  title={ I18n.t('detailFilmProducer') + `${this.state.dataSource.height}` + `${this.state.dataSource.mass}` } 
+                  title={ I18n.t('detailCharacterHeight') + `${this.state.dataSource.height}`} 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmDirector') + `${this.state.dataSource.hair_color}` + `${this.state.dataSource.skin_color}` + `${this.state.dataSource.eye_color}` } 
+                  title={ I18n.t('detailCharacterMass') + `${this.state.dataSource.mass}`} 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailFilmReleaseDate') + `${this.state.dataSource.birth_year}` } 
+                  title={ I18n.t('detailCharacterHairColor') + `${this.state.dataSource.hair_color}` }
+                  hideChevron={true}
+        />
+
+        <ListItem
+                  title={ I18n.t('detailCharacterSkinColor') + `${this.state.dataSource.skin_color}` }
+                  hideChevron={true}
+        />
+
+        <ListItem
+                  title={ I18n.t('detailCharacterEyeColor') + `${this.state.dataSource.eye_color}` }
+                  hideChevron={true}
+        />
+
+        <ListItem
+                  title={ I18n.t('detailCharacterBirthday') + `${this.state.dataSource.birth_year}` } 
                   hideChevron={true}
         />
 
