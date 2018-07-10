@@ -14,7 +14,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,
-    backgroundColor: 'grey'
+    backgroundColor: '#3F51B5'
   },
   headertext: {
     fontSize: 16,

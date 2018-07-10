@@ -95,6 +95,9 @@ export default class ApiManager extends React.Component {
 	          dataSource: responseJson,
 	        }, function(){
 
+	           var planetsInfos = []
+	           APIManager.getPlanetsInfos(classCallback, classCallback.state.dataSource.homeworld, planetsInfos, true);
+
 	          var filmsInfos = []
 	          classCallback.state.dataSource.films.forEach(function(elementURL, index) {
 	          	APIManager.getFilmsInfos(classCallback, elementURL, filmsInfos, true);
@@ -115,8 +118,16 @@ export default class ApiManager extends React.Component {
 				APIManager.getStarshipsInfos(classCallback, elementURL, starshipsInfos, true);
 	          });
 
-	          var planetsInfos = []
-	          APIManager.getPlanetsInfos(classCallback, classCallback.state.dataSource.homeworld, planetsInfos, false);
+	          var filmsInfos = []
+	          classCallback.state.dataSource.films.forEach(function(elementURL, index) {
+
+	          	if (index === classCallback.state.dataSource.films.length - 1) { 
+	          		APIManager.getFilmsInfos(classCallback, elementURL, filmsInfos, false);
+				} else {
+					APIManager.getFilmsInfos(classCallback, elementURL, filmsInfos, true);
+				}
+
+	          });
 
 	        });
 

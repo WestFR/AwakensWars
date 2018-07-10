@@ -95,12 +95,12 @@ export default class StarshipDetailsPage extends React.Component {
         />
 
         <ListItem
-                  title= { I18n.t('detailStarshipModel') + `${this.state.dataSource.model}` }
+                  title= { I18n.t('detailStarshipVehicleModel') + `${this.state.dataSource.model}` }
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailStarshipClass') + `${this.state.dataSource.starship_class}` } 
+                  title={ I18n.t('detailStarshipVehicleClass') + `${this.state.dataSource.starship_class}` } 
                   hideChevron={true}
         />
 
@@ -108,27 +108,27 @@ export default class StarshipDetailsPage extends React.Component {
         {this.renderHeader(I18n.t('detailDetails'))}
 
         <ListItem
-                  title={ I18n.t('detailStarshipCost') + `${this.state.dataSource.cost_in_credits}` } 
+                  title={ I18n.t('detailStarshipVehicleCost') + `${this.state.dataSource.cost_in_credits}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailStarshipLength') + `${this.state.dataSource.length}` } 
+                  title={ I18n.t('detailStarshipVehicleLength') + `${this.state.dataSource.length}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailStarshipPassengers') + `${this.state.dataSource.passengers}` } 
+                  title={ I18n.t('detailStarshipVehiclePassengers') + `${this.state.dataSource.passengers}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailStarshipConsumables') + `${this.state.dataSource.consumables}` } 
+                  title={ I18n.t('detailStarshipVehicleConsumables') + `${this.state.dataSource.consumables}` } 
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailStarshipCargoCapacity') + `${this.state.dataSource.cargo_capacity}` } 
+                  title={ I18n.t('detailStarshipVehicleCargoCapacity') + `${this.state.dataSource.cargo_capacity}` } 
                   hideChevron={true}
         />
 
@@ -136,7 +136,7 @@ export default class StarshipDetailsPage extends React.Component {
 
       <FlatList
             data={this.state.characterDataSource}
-            ListHeaderComponent={this.renderHeader(I18n.t('detailsCharacters'))}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailCharacters'))}
             renderItem={({item}) => (
             
             <ListItem
@@ -152,7 +152,7 @@ export default class StarshipDetailsPage extends React.Component {
 
       <FlatList
             data={this.state.filmDataSource}
-            ListHeaderComponent={this.renderHeader(I18n.t('detailsFilms'))}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailFilms'))}
             renderItem={({item}) => (
             
             <ListItem

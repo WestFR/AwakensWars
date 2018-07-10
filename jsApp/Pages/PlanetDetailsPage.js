@@ -98,9 +98,12 @@ export default class PlanetDetailsPage extends React.Component {
         {this.renderHeader(I18n.t('detailDetails'))}
 
         <ListItem
-                  title={ I18n.t('detailPlanetCaract') + 
-                          `${this.state.dataSource.rotation_period}` + " / " + 
-                          `${this.state.dataSource.orbital_period}` } 
+                  title={ I18n.t('detailPlanetRotation') + `${this.state.dataSource.rotation_period}` } 
+                  hideChevron={true}
+        />
+
+        <ListItem
+                  title={ I18n.t('detailPlanetOrbital') + `${this.state.dataSource.orbital_period}` } 
                   hideChevron={true}
         />
 
@@ -154,7 +157,7 @@ export default class PlanetDetailsPage extends React.Component {
 
       <FlatList
             data={this.state.filmDataSource}
-            ListHeaderComponent={this.renderHeader(I18n.t('detailStarships'))}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailFilms'))}
             renderItem={({item}) => (
             
             <ListItem

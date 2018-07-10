@@ -113,17 +113,17 @@ export default class CharacterDetailsPage extends React.Component {
         />
 
         <ListItem
-                  title={ I18n.t('detailCharacterHairColor') + `${this.state.dataSource.hair_color}` }
+                  title={ I18n.t('detailCharacterSpecieHairColor') + `${this.state.dataSource.hair_color}` }
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailCharacterSkinColor') + `${this.state.dataSource.skin_color}` }
+                  title={ I18n.t('detailCharacterSpecieSkinColor') + `${this.state.dataSource.skin_color}` }
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailCharacterEyeColor') + `${this.state.dataSource.eye_color}` }
+                  title={ I18n.t('detailCharacterSpecieEyeColor') + `${this.state.dataSource.eye_color}` }
                   hideChevron={true}
         />
 
@@ -188,7 +188,7 @@ export default class CharacterDetailsPage extends React.Component {
 
       <FlatList
             data={this.state.filmDataSource}
-            ListHeaderComponent={this.renderHeader(I18n.t('detailStarships'))}
+            ListHeaderComponent={this.renderHeader(I18n.t('detailFilms'))}
             renderItem={({item}) => (
             
             <ListItem
