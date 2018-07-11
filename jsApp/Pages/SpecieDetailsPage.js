@@ -110,7 +110,7 @@ export default class SpecieDetailsPage extends React.Component {
         />
 
         <ListItem
-                  title={ I18n.t('detailSpecieHomeworld') + `${this.state.dataSource.homeworld}` } 
+                  title={ I18n.t('detailSpecieHomeworld') + `${this.state.planetDataSource[0].name}` } 
                   hideChevron={true}
         />
 
@@ -123,17 +123,17 @@ export default class SpecieDetailsPage extends React.Component {
         />
 
         <ListItem
-                  title={ I18n.t('detailCharacterSpecieHairColor') + `${this.state.dataSource.hair_color}` }
+                  title={ I18n.t('detailCharacterSpecieHairColor') + `${this.state.dataSource.hair_colors}` }
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailCharacterSpecieSkinColor') + `${this.state.dataSource.skin_color}` }
+                  title={ I18n.t('detailCharacterSpecieSkinColor') + `${this.state.dataSource.skin_colors}` }
                   hideChevron={true}
         />
 
         <ListItem
-                  title={ I18n.t('detailCharacterSpecieEyeColor') + `${this.state.dataSource.eye_color}` }
+                  title={ I18n.t('detailCharacterSpecieEyeColor') + `${this.state.dataSource.eye_colors}` }
                   hideChevron={true}
         />
 

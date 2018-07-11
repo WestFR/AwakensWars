@@ -133,7 +133,7 @@ export default class CharacterDetailsPage extends React.Component {
         />
 
         <ListItem
-                  title={ I18n.t('detailCharacterHomeworld') + `${this.state.planetDataSource.name}` } 
+                  title={ I18n.t('detailCharacterHomeworld') + `${this.state.planetDataSource[0].name}` } 
                   hideChevron={true}
         />
 

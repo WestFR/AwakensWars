@@ -223,13 +223,16 @@ export default class ApiManager extends React.Component {
 	          refreshing: false,
 	          dataSource: responseJson,
 	        }, function(){
-			  
-			  var homeworldInfos = []
-	          APIManager.getPlanetsInfos(classCallback, classCallback.state.dataSource.homeworld, homeworldInfos, true);
 
+	          if(classCallback.state.dataSource.homeworld != null) {
+	        	var homeworldInfos = []
+	          	APIManager.getPlanetsInfos(classCallback, classCallback.state.dataSource.homeworld, homeworldInfos, true);
+	          } 
+			  
+			  
 	          var peoplesInfos = []
 	          classCallback.state.dataSource.people.forEach(function(elementURL, index) {
-	          	APIManager.getPlanetsInfos(classCallback, elementURL, peoplesInfos, true);
+	          	APIManager.getCharactersInfos(classCallback, elementURL, peoplesInfos, true);
 	          });
 
 	          var filmsInfos = []

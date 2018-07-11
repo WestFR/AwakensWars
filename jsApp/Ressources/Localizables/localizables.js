@@ -40,8 +40,8 @@ I18n.translations = {
     detailStarshipTitle: 'Starship : ',
     detailStarshipName: 'Starship name : ',
     
-    detailsVehicleTitle: 'Vehicle : ',
-    detailsVehicleName: 'Vehicle name : ',
+    detailVehicleTitle: 'Vehicle : ',
+    detailVehicleName: 'Vehicle name : ',
 
     detailStarshipVehicleModel: 'Model : ',
     detailStarshipVehicleClass: 'Class : ',
@@ -51,14 +51,14 @@ I18n.translations = {
     detailStarshipVehicleConsumables: 'Consumables capacity : ',
     detailStarshipVehicleCargoCapacity: 'Cargo capacity : ',
 
-    detailsSpecieTitle: 'Specie : ',
-    detailsSpecieName: 'Specie name : ',
+    detailSpecieTitle: 'Specie : ',
+    detailSpecieName: 'Specie name : ',
     detailSpecieClassification: 'Classification : ',
     detailSpecieDesignation: 'Designation : ',
     detailSpecieLanguage: 'Language : ',
     detailSpecieHomeworld: 'Home planet : ',
-    detailSpecieHeight: 'Average size (cm): ',
-    detailSpecieLifespan: 'Lifespan : ',
+    detailSpecieHeight: 'Average size (cm) : ',
+    detailSpecieLifespan: 'Lifespan (years) : ',
 
     detailCharacterSpecieHairColor: 'Hair color : ',
     detailCharacterSpecieSkinColor: 'Skin color : ',
@@ -135,7 +135,7 @@ I18n.translations = {
     detailSpecieLanguage: 'Langage : ',
     detailSpecieHomeworld: 'Planète d\'origine : ',
     detailSpecieHeight: 'Taille moyenne (cm) : ',
-    detailSpecieLifespan: 'Durée de vie : ',
+    detailSpecieLifespan: 'Durée de vie (années) : ',
 
     detailCharacterSpecieHairColor: 'Couleur de cheveux : ',
     detailCharacterSpecieSkinColor: 'Couleur de peau : ',
