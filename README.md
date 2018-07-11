@@ -34,17 +34,17 @@ Follow this instructions to install the application & develop your features !
 
 1. Clone this project in your project folder : `git clone https://github.com/WestFR/AwakensWars.git`
 
-2. Do this command line in your terminal for install global dependencies : 
+2. Do this command line in your terminal for install global dependencies :<br>
 `brew install node`<br>
 `brew install watchman`
 
-3. Do this command line in your terminal for install react-native : 
+3. Do this command line in your terminal for install react-native :<br> 
 `npm install -g react-native-cli`
 
-4. Do this command line in your project's folder for install project's dependencies :
+4. Do this command line in your project's folder for install project's dependencies :<br>
 `npm update`
 
-5. For build this app on your phone / simulator, use this command line :
+5. For build this app on your phone / simulator, use this command line :<br>
 `react-native run-android (on emulator or on USB debug phone).`<br>
 `react-native run-ios (on mac only, xcode is necessary + simulator).`
 
