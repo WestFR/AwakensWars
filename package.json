@@ -15,7 +15,7 @@
     "react-native-navbar": "^2.1.0",
     "react-native-splash-screen": "^3.0.9",
     "react-native-vector-icons": "^4.6.0",
-    "react-navigation": "^2.6.0"
+    "react-navigation": "^4.3.9"
   },
   "devDependencies": {
     "babel-jest": "23.2.0",
